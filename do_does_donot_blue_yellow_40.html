@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kru Pai Classroom • Do / Does / Do not / Does not • 40 ข้อ</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg1:#eef6ff; --bg2:#fffef2;
+  --ink:#0f1e33; --muted:#49607e;
+  --blue:#2563eb; --blue2:#60a5fa;
+  --yellow:#facc15; --yellow2:#fde047;
+  --ok:#16a34a; --bad:#dc2626; --line:#e5efff;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;font-family:'Noto Sans Thai', Fredoka,system-ui,Segoe UI,Roboto,Arial;line-height:1.6;background:linear-gradient(180deg,var(--bg1),var(--bg2));color:var(--ink)}
+.container{max-width:980px;margin:20px auto;padding:16px}
+.card{background:#fff;border:1.5px solid var(--line);border-radius:20px;box-shadow:0 12px 26px rgba(37,99,235,.10);padding:18px;margin-bottom:16px;position:relative}
+
+.brandRow{display:flex;align-items:center;gap:10px;margin:6px 0 12px 0}
+.logo{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,var(--yellow2),var(--yellow)); color:#0b2960;font-weight:900;box-shadow:0 6px 12px rgba(250,204,21,.3)}
+.brandName{font-size:20px;font-weight:900;color:#0b2960}
+.brandBadge{margin-left:auto;background:#fffbeb;border:2px dashed var(--yellow);color:#7a5b00;border-radius:999px;padding:6px 12px;font-weight:900}
+
+h1{margin:.2rem 0 0 0;font-size:28px;color:#0b2960}
+.sub{color:var(--muted);margin:.2rem 0 1rem 0;font-size:18px}
+.controls{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.btn{background:linear-gradient(135deg,var(--blue2),var(--blue));color:#fff;border:none;border-radius:12px;padding:10px 14px;font-weight:800;cursor:pointer;box-shadow:0 8px 18px rgba(37,99,235,.18)}
+.btn.ghost{background:#fff;color:var(--blue);border:2px solid var(--blue)}
+.grid2{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center}
+.input{width:100%;padding:14px;border-radius:12px;border:2px solid var(--line);font-size:20px}
+.headline{font-size:26px;font-weight:900;color:#0b2960}
+.smallnote{color:var(--muted);font-size:12px}
+.label{font-size:22px;font-weight:900;line-height:1.5;display:inline-block;padding-bottom:2px;color:#0b2960}
+
+.hud{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:10px 0}
+.pill{display:inline-flex;align-items:center;gap:8px;background:#f1f5ff;border:1.5px solid var(--line);border-radius:999px;padding:6px 12px;font-weight:800;color:#0b2960}
+.progress{height:12px;background:#f2f8ff;border:1.5px solid var(--line);border-radius:999px;overflow:hidden}
+.progress>div{height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--yellow))}
+
+.q{font-size:20px;white-space:pre-line}
+.tag{display:inline-block;background:#fff8cc;border:2px dashed var(--yellow);padding:4px 8px;border-radius:10px;color:#7a5b00;font-weight:800}
+
+.fillrow{display:grid;grid-template-columns:1fr auto;gap:10px;margin-top:10px}
+.fillinput{width:100%;padding:12px;border:2px solid var(--line);border-radius:12px;font-size:20px}
+
+.choices{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
+.choice{border:2px solid var(--line);border-radius:14px;padding:14px;font-size:20px;font-weight:700;cursor:pointer;transition:.05s;background:#f8fbff;color:#0b2960;text-align:left}
+.choice:hover{transform:translateY(-1px);background:#eef6ff}
+.choice.sel{border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,.18)}
+.choice.correct{background:#ecfdf5;border-color:#34d399;color:#065f46}
+.choice.wrong{background:#fef2f2;border-color:#fca5a5;color:#991b1b}
+
+.correctNote{color:#065f46;font-weight:800}
+.wrongNote{color:#991b1b;font-weight:800}
+.hidden{display:none!important}
+.result{font-size:18px}
+
+kbd{background:#eef; border:1px solid #c7d2fe;border-radius:6px;padding:2px 6px}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- START -->
+  <div id="start" class="card">
+    <div class="brandRow">
+      <div class="logo">KP</div>
+      <div class="brandName">Kru Pai Classroom</div>
+      <div class="brandBadge">Do / Does</div>
+    </div>
+    <div class="headline">Do / Does / Do not / Does not (40 ข้อ)</div>
+    <div class="sub">สองตอน • <b>Part A</b> เติม Do/Does 20 ข้อ • <b>Part B</b> 4 ตัวเลือก 20 ข้อ (มีประโยคบอกเล่า–ปฏิเสธครบ)</div>
+    <div class="grid2">
+      <div>
+        <div><span class="label">ชื่อเล่นนักเรียน:</span></div>
+        <input id="nickname" class="input" placeholder="เช่น: Nong Pai" />
+        <div class="smallnote">เคล็ดลับ: กด <kbd>Enter</kbd> เพื่อส่ง (Part A) • กด <kbd>1–4</kbd> เลือกช้อยส์ (Part B)</div>
+      </div>
+      <div><button class="btn" id="btnStart">เริ่มทำแบบทดสอบ</button></div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <div id="header" class="card hidden">
+    <div class="brandRow">
+      <div class="brandName">Kru Pai Classroom</div>
+      <div class="brandBadge">Now Playing</div>
+    </div>
+    <h1>Do / Does • Quiz</h1>
+    <div class="sub"><span class="pill">ชื่อ: <b id="who">—</b></span> <span class="pill">Part <b id="partName">A</b></span></div>
+    <div class="hud">
+      <div class="pill">ข้อที่ <b id="idx">0</b>/<span id="total">0</span></div>
+      <div class="pill">คะแนน: <b id="score">0</b></div>
+    </div>
+    <div class="progress"><div id="bar"></div></div>
+  </div>
+
+  <!-- QUIZ BODY -->
+  <div id="quiz"></div>
+
+  <!-- RESULT -->
+  <div id="footer" class="card hidden">
+    <div class="brandRow">
+      <div class="brandName">Kru Pai Classroom</div>
+      <div class="brandBadge">Result</div>
+    </div>
+    <div class="result" id="result">ยังไม่ได้เริ่มทำแบบทดสอบ</div>
+    <div class="controls" style="margin-top:10px">
+      <button class="btn" id="btnRestart">ทำใหม่อีกครั้ง</button>
+      <button class="btn ghost" id="btnHome">กลับหน้าแรก</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const PART_A = [{"q": "___ you like ice cream?", "a": "Do"}, {"q": "___ she play the piano?", "a": "Does"}, {"q": "___ they go to school by bus?", "a": "Do"}, {"q": "___ your father work in an office?", "a": "Does"}, {"q": "___ we need more time?", "a": "Do"}, {"q": "___ the dog bark at night?", "a": "Does"}, {"q": "___ I look tired?", "a": "Do"}, {"q": "___ he watch TV every evening?", "a": "Does"}, {"q": "___ they have many friends?", "a": "Do"}, {"q": "___ your mother cook well?", "a": "Does"}, {"q": "___ she speak English?", "a": "Does"}, {"q": "___ they study science on Friday?", "a": "Do"}, {"q": "___ John play football after school?", "a": "Does"}, {"q": "___ you want to join us?", "a": "Do"}, {"q": "___ the teacher explain the lesson clearly?", "a": "Does"}, {"q": "___ the children like chocolate?", "a": "Do"}, {"q": "___ your brother play games?", "a": "Does"}, {"q": "___ birds fly in the sky?", "a": "Do"}, {"q": "___ she read books every night?", "a": "Does"}, {"q": "___ we have English class today?", "a": "Do"}];
+const PART_B = [{"q": "___ you like pizza?", "choices": ["Do", "Does", "Do not", "Does not"], "a": 0}, {"q": "She ___ like coffee because it is bitter.", "choices": ["Do", "Does", "Do not", "Does not"], "a": 3}, {"q": "___ they play football on Sunday?", "choices": ["Do", "Does", "Do not", "Does not"], "a": 0}, {"q": "He ___ want to go shopping because he is tired.", "choices": ["Do", "Does", "Do not", "Does not"], "a": 3}, {"q": "___ your father work in a hospital?", "choices": ["Do", "Does", "Do not", "Does not"], "a": 1}, {"q": "We ___ watch TV because we are busy.", "choices": ["Do", "Does", "Do not", "Does not"], "a": 2}, {"q": "___ she live in Bangkok?", "choices": ["Do", "Does", "Do not", "Does not"], "a": 1}, {"q": "They ___ eat meat because they are vegetarian.", "choices": ["Do", "Does", "Do not", "Does not"], "a": 2}, {"q": "___ he like cats?", "choices": ["Do", "Does", "Do not", "Does not"], "a": 1}, {"q": "She ___ watch horror movies because she is scared.", "choices": ["Do", "Does", "Do not", "Does not"], "a": 3}, {"q": "___ we need to finish homework today?", "choices": ["Do", "Does", "Do not", "Does not"], "a": 0}, {"q": "He ___ eat vegetables because he doesn’t like them.", "choices": ["Do", "Does", "Do not", "Does not"], "a": 3}, {"q": "___ your friends play basketball?", "choices": ["Do", "Does", "Do not", "Does not"], "a": 0}, {"q": "The boy ___ like spicy food because it is too hot.", "choices": ["Do", "Does", "Do not", "Does not"], "a": 3}, {"q": "___ she study English every evening?", "choices": ["Do", "Does", "Do not", "Does not"], "a": 1}, {"q": "We ___ eat dinner late because we are hungry early.", "choices": ["Do", "Does", "Do not", "Does not"], "a": 2}, {"q": "___ he play tennis at the weekend?", "choices": ["Do", "Does", "Do not", "Does not"], "a": 1}, {"q": "She ___ sing in the choir because she is shy.", "choices": ["Do", "Does", "Do not", "Does not"], "a": 3}, {"q": "___ you and your friends study together?", "choices": ["Do", "Does", "Do not", "Does not"], "a": 0}, {"q": "They ___ watch TV at night because they are sleepy.", "choices": ["Do", "Does", "Do not", "Does not"], "a": 2}];
+
+let bank = [];
+let order = [];
+let i = 0;
+let score = 0;
+let nameUser = "นักเรียน";
+let part = "A";
+
+const $ = (s)=>document.querySelector(s);
+const startC = $("#start");
+const headC = $("#header");
+const footC = $("#footer");
+const quiz = $("#quiz");
+const idx = $("#idx");
+const total = $("#total");
+const scoreEl = $("#score");
+const bar = $("#bar");
+const result = $("#result");
+const who = $("#who");
+const partName = $("#partName");
+
+function shuffle(a){ for(let k=a.length-1;k>0;k--){ const j=Math.floor(Math.random()*(k+1)); [a[k],a[j]]=[a[j],a[k]]; } }
+function resetPart(arr){
+  bank = JSON.parse(JSON.stringify(arr));
+  order = bank.map((_,k)=>k);
+  shuffle(order);
+  i = 0;
+  total.textContent = bank.length;
+  partName.textContent = part;
+  render();
+}
+function start(){
+  nameUser = document.getElementById("nickname").value || "นักเรียน";
+  who.textContent = nameUser;
+  score = 0;
+  scoreEl.textContent = score;
+  startC.classList.add("hidden");
+  headC.classList.remove("hidden");
+  footC.classList.remove("hidden");
+  result.textContent = "ทำข้อสอบอยู่… สู้ๆ!";
+  part = "A";
+  resetPart(PART_A);
+}
+
+function render(){
+  quiz.innerHTML = "";
+  if(i>=order.length){
+    if(part==="A"){
+      part = "B";
+      partName.textContent = part;
+      resetPart(PART_B);
+      return;
+    }else{
+      idx.textContent = order.length;
+      bar.style.width = "100%";
+      result.innerHTML = `เสร็จแล้ว <b>${nameUser}</b>! ได้คะแนนรวม <b>${score}</b> / 40 คะแนน (${Math.round(score/40*100)}%)`;
+      return;
+    }
+  }
+  const q = bank[ order[i] ];
+  idx.textContent = (i+1);
+  const progressBase = i / order.length * 100;
+  bar.style.width = Math.round(progressBase) + "%";
+
+  if(part==="A"){
+    const card = document.createElement("div");
+    card.className = "card";
+    const qel = document.createElement("div");
+    qel.className = "q";
+    qel.innerHTML = `<span class="tag">Part A</span> ${i+1}. ${q.q}`;
+    const row = document.createElement("div");
+    row.className = "fillrow";
+    const inp = document.createElement("input");
+    inp.className = "fillinput";
+    inp.placeholder = "พิมพ์ Do หรือ Does";
+    const btn = document.createElement("button");
+    btn.className = "btn";
+    btn.textContent = "ส่งคำตอบ";
+    row.appendChild(inp); row.appendChild(btn);
+    const fb = document.createElement("div"); fb.style.marginTop='6px';
+
+    btn.onclick = submit;
+    inp.onkeydown = (e)=>{ if(e.key==="Enter"){ submit(); }};
+
+    function submit(){
+      const ans = (inp.value||"").trim().toLowerCase();
+      const ok = ans === q.a.toLowerCase();
+      fb.innerHTML = ok
+        ? `<span class="correctNote">ถูกต้อง!</span> (${q.a})`
+        : `<span class="wrongNote">ยังไม่ถูก</span> → คำตอบที่ถูกคือ <b>${q.a}</b>`;
+      if(ok) score++; scoreEl.textContent = score;
+      inp.disabled = true; btn.disabled = true;
+      setTimeout(()=>{ i++; render(); }, 800);
+    }
+
+    card.appendChild(qel);
+    card.appendChild(row);
+    card.appendChild(fb);
+    quiz.appendChild(card);
+  }else{
+    const card = document.createElement("div");
+    card.className = "card";
+    const qel = document.createElement("div");
+    qel.className = "q";
+    qel.innerHTML = `<span class="tag">Part B</span> ${i+1}. ${q.q}`;
+    const grid = document.createElement("div");
+    grid.className = "choices";
+
+    const indices = q.choices.map((_,k)=>k); shuffle(indices);
+    const correctOrig = q.a;
+    let correctNow = indices.indexOf(correctOrig);
+
+    indices.forEach((idxC,pos)=>{
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "choice";
+      btn.innerHTML = `<b>${pos+1})</b> ${q.choices[idxC]}`;
+      btn.onclick = ()=>select(pos, btn, correctNow);
+      grid.appendChild(btn);
+    });
+
+    function select(sel, btn, correct){
+      [...grid.children].forEach(b=>b.disabled=true);
+      btn.classList.add("sel");
+      if(sel===correct){ btn.classList.add("correct"); score++; scoreEl.textContent = score; }
+      else{ btn.classList.add("wrong"); grid.children[correct].classList.add("correct"); }
+      setTimeout(()=>{ i++; render(); }, 650);
+    }
+
+    document.onkeydown = (e)=>{
+      if(e.key>='1' && e.key<='4'){
+        const n = parseInt(e.key,10)-1;
+        if(grid.children[n] && !grid.children[n].disabled) grid.children[n].click();
+      }
+    };
+
+    card.appendChild(qel);
+    card.appendChild(grid);
+    quiz.appendChild(card);
+  }
+}
+
+document.getElementById("btnStart").onclick = start;
+document.getElementById("btnRestart").onclick = ()=>{ part="A"; start(); };
+document.getElementById("btnHome").onclick = ()=>{ headC.classList.add("hidden"); footC.classList.add("hidden"); startC.classList.remove("hidden"); quiz.innerHTML=""; };
+
+</script>
+</body>
+</html>
